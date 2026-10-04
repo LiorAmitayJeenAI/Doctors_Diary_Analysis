@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="doctor-schedule-erd" name="Doctor Schedule Analysis ERD">
+    <mxGraphModel dx="2361" dy="959" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-19" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;doctors&lt;/b&gt;&lt;hr&gt;PK  doctor_id : BIGINT&lt;br&gt;UQ  national_id : VARCHAR(9)&lt;br&gt;    doctor_name : VARCHAR(150)" vertex="1">
+          <mxGeometry height="125" width="300" x="580" y="830.0028571428574" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-20" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;doctor_calendars&lt;/b&gt;&lt;hr&gt;PK  doctor_calendar_id : BIGINT&lt;br&gt;FK  doctor_id : BIGINT&lt;br&gt;    facility_code : VARCHAR&lt;br&gt;    role_code : VARCHAR&lt;br&gt;UQ  (doctor_id, facility_code, role_code)" vertex="1">
+          <mxGeometry height="165" width="360" x="620" y="305.00285714285735" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;analysis_runs&lt;/b&gt;&lt;hr&gt;PK  analysis_run_id : BIGINT&lt;br&gt;FK  doctor_calendar_id : BIGINT&lt;br&gt;    analysis_period_from : DATE&lt;br&gt;    analysis_period_to : DATE&lt;br&gt;    status : VARCHAR(40)&lt;br&gt;    created_at : TIMESTAMP&lt;br&gt;    completed_at : TIMESTAMP NULL" vertex="1">
+          <mxGeometry height="200" width="360" x="1570" y="510.00285714285735" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;schedules&lt;/b&gt;&lt;hr&gt;PK  schedule_id : BIGINT&lt;br&gt;FK  doctor_calendar_id : BIGINT&lt;br&gt;FK  analysis_run_id : BIGINT&lt;br&gt;    source_national_id : VARCHAR&lt;br&gt;    source_facility_code : VARCHAR&lt;br&gt;    source_role_code : VARCHAR&lt;br&gt;    activity_day : VARCHAR&lt;br&gt;    morning_from_time : VARCHAR&lt;br&gt;    morning_to_time : VARCHAR&lt;br&gt;    afternoon_from_time : VARCHAR&lt;br&gt;    afternoon_to_time : VARCHAR&lt;br&gt;    frequency : VARCHAR&lt;br&gt;    note_number : VARCHAR&lt;br&gt;    source_user : VARCHAR&lt;br&gt;    source_program : VARCHAR&lt;br&gt;    created_date : VARCHAR&lt;br&gt;    created_time : VARCHAR&lt;br&gt;    record_status : VARCHAR&lt;br&gt;    receiving_district : VARCHAR&lt;br&gt;    last_change_date : VARCHAR" vertex="1">
+          <mxGeometry height="500" width="410" x="800" y="1030.0028571428572" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;appointments&lt;/b&gt;&lt;hr&gt;PK  appointment_id : BIGINT&lt;br&gt;FK  doctor_calendar_id : BIGINT&lt;br&gt;FK  analysis_run_id : BIGINT&lt;br&gt;    source_national_id : VARCHAR&lt;br&gt;    source_facility_code : VARCHAR&lt;br&gt;    source_role_code : VARCHAR&lt;br&gt;    appointment_date : VARCHAR&lt;br&gt;    appointment_time : VARCHAR&lt;br&gt;    member_identity_code : VARCHAR&lt;br&gt;    member_id : VARCHAR&lt;br&gt;    appointment_type_code : VARCHAR&lt;br&gt;    visit_type_code : VARCHAR&lt;br&gt;    visit_duration : VARCHAR&lt;br&gt;    actual_visit_time : VARCHAR&lt;br&gt;    calendar_source : VARCHAR&lt;br&gt;    calendar_status : VARCHAR&lt;br&gt;    reason_or_preferred_visit_type : VARCHAR&lt;br&gt;    reason_description : VARCHAR&lt;br&gt;    booking_status : VARCHAR&lt;br&gt;    allocated_segments : VARCHAR&lt;br&gt;    booked_date : VARCHAR&lt;br&gt;    booked_time : VARCHAR&lt;br&gt;    booking_center_code : VARCHAR&lt;br&gt;    created_date : VARCHAR&lt;br&gt;    created_time : VARCHAR&lt;br&gt;    record_status : VARCHAR&lt;br&gt;    last_change_date : VARCHAR" vertex="1">
+          <mxGeometry height="640" width="500" x="1239" y="1018.1428571428573" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-24" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;visits&lt;/b&gt;&lt;hr&gt;PK  visit_id : BIGINT&lt;br&gt;FK  doctor_calendar_id : BIGINT&lt;br&gt;FK  analysis_run_id : BIGINT&lt;br&gt;    emp_name : VARCHAR&lt;br&gt;    position_code : VARCHAR&lt;br&gt;    org_unit_facility_desc : VARCHAR&lt;br&gt;    customer_id : VARCHAR&lt;br&gt;    payment_group_desc : VARCHAR&lt;br&gt;    weekday_name : VARCHAR&lt;br&gt;    encounter_date : DATE&lt;br&gt;    encounter_start_datetime : TIMESTAMP&lt;br&gt;    hr_emp_key_pk : VARCHAR" vertex="1">
+          <mxGeometry height="340" width="410" x="1799" y="1018.1428571428573" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;analysis_metrics&lt;/b&gt;&lt;hr&gt;PK  analysis_metric_id : BIGINT&lt;br&gt;FK  analysis_run_id : BIGINT&lt;br&gt;    metrics_json : JSONB&lt;br&gt;    created_at : TIMESTAMP" vertex="1">
+          <mxGeometry height="155" width="350" x="2029" y="718.1428571428573" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-26" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacing=8;fontSize=12;" value="&lt;b&gt;recommendations&lt;/b&gt;&lt;hr&gt;PK  recommendation_id : BIGINT&lt;br&gt;FK  analysis_run_id : BIGINT&lt;br&gt;    recommendation_type : VARCHAR(100)&lt;br&gt;    title : VARCHAR(255)&lt;br&gt;    recommendation_text : TEXT&lt;br&gt;    reason : TEXT&lt;br&gt;    expected_impact : TEXT&lt;br&gt;    confidence : NUMERIC(5,4)&lt;br&gt;    evidence_json : JSONB&lt;br&gt;    created_at : TIMESTAMP" vertex="1">
+          <mxGeometry height="310" width="410" x="2259" y="1018.1428571428573" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-27" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-20" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-28" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-21" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-29" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-22" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-30" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-23" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-31" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-24" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-32" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-22" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-33" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-23" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-34" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-24" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-35" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-25" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Otdzvfc5PuZ8lrv5hvOk-36" edge="1" parent="1" source="Otdzvfc5PuZ8lrv5hvOk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;" target="Otdzvfc5PuZ8lrv5hvOk-26" value="1:N">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
