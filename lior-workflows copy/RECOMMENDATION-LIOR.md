@@ -243,8 +243,9 @@ weekly schedule rather than only changed windows.
 
 Every displayed recommendation and insight includes a deterministic Hebrew
 `בסיס הנתונים` explanation sourced from Analytics' verified `factual_basis` contract.
-It shows the full analysis window separately from the observed pattern span, followed
-by the relevant weekday/time, support frequency, and applicable counts or attributes.
+The analysis window is shown once in the situation summary. Each basis explanation
+starts at the observed pattern span, followed by the relevant weekday/time, support
+frequency, and applicable counts or attributes.
 For up to five occurrences it lists every exact date. For more than five it renders
 only the first/last dates plus the verified numerator and denominator. The situation
 summary also identifies the analysis period.

@@ -682,7 +682,8 @@ def test_recurring_recommendation_displays_period_window_and_frequency(
     _, message = _present(patched_flow, monkeypatch, result)
     assert "**תקופת הנתונים:** 05.01.2026–28.06.2026." in message
     assert "בסיס הנתונים:" in message
-    assert "נתונים מ־05.01.2026 עד 28.06.2026" in message
+    assert "נתונים מ־05.01.2026 עד 28.06.2026" not in message
+    assert "חלון הניתוח:" not in message
     assert "יום ראשון, 09:00–10:00" in message
     assert "הדפוס חזר ב־23 מתוך 24 מועדים רלוונטיים" in message
     assert "95.83 אחוזים" in message
@@ -711,7 +712,8 @@ def test_distributed_pattern_renders_analysis_window_span_and_frequency(
     result = _validated(patched_flow, monkeypatch, [candidate], _inventory())
     _, message = _present(patched_flow, monkeypatch, result)
 
-    assert "חלון הניתוח: 05.01–28.06" in message
+    assert "**תקופת הנתונים:** 05.01.2026–28.06.2026." in message
+    assert "חלון הניתוח:" not in message
     assert "הדפוס הופיע לאורך התקופה בין 11.01 ל־21.06" in message
     assert "ב־21 מתוך 24 ימי ראשון רלוונטיים" in message
     assert "בשעות 09:00–10:00" in message

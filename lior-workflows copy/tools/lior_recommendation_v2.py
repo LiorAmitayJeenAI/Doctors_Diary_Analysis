@@ -1345,14 +1345,6 @@ class RecommendationPresenter(Component):
         if not isinstance(basis, dict):
             return "בסיס הנתונים המפורט אינו זמין ולכן הממצא אינו מתואר כדפוס חוזר."
         parts = []
-        period = basis.get("period") or {}
-        date_from = cls._lior_grounding_date(period.get("from"))
-        date_to = cls._lior_grounding_date(period.get("to"))
-        if date_from and date_to:
-            parts.append(f"נתונים מ־{date_from} עד {date_to}")
-        elif date_from or date_to:
-            parts.append(f"תקופת נתונים: {date_from or date_to}")
-
         window = basis.get("window") or {}
         weekday = cls._clean(window.get("weekday"))
         time_from = cls._clean(window.get("time_from"))
@@ -1381,7 +1373,7 @@ class RecommendationPresenter(Component):
             parts.append(f"נמצאו {cls._fmt_num(numerator)} מופעים")
 
         observed_weeks = cls._lior_grounding_number(
-            period.get("observed_weeks")
+            (basis.get("period") or {}).get("observed_weeks")
         )
         if observed_weeks is not None and denominator is None:
             parts.append(f"נבדקו {cls._fmt_num(observed_weeks)} שבועות")
@@ -1672,15 +1664,6 @@ class RecommendationPresenter(Component):
             return cls._lior_occurrence_base_basis_text(basis)
 
         parts = []
-        analysis = basis.get("analysis_window") or basis.get("period") or {}
-        analysis_from, analysis_to = cls._lior_occurrence_date_range(
-            analysis.get("from"), analysis.get("to")
-        )
-        if analysis_from and analysis_to:
-            parts.append(f"חלון הניתוח: {analysis_from}–{analysis_to}")
-        elif analysis_from or analysis_to:
-            parts.append(f"חלון הניתוח: {analysis_from or analysis_to}")
-
         dates = [
             cls._lior_occurrence_date(value)
             for value in span.get("occurrence_dates") or []
